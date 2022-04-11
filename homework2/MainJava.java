@@ -34,16 +34,16 @@ class Students{
 	Scanner scan = new Scanner(System.in);
 	Subject subject = new Subject();
 	void getInformation() {
-		System.out.print("ÇëÊäÈëÑ§ÉúĞÕÃû£º\n");
+		System.out.print("è¯·è¾“å…¥å­¦ç”Ÿå§“åï¼š\n");
 		name = scan.nextLine();
-		System.out.print("ÇëÊäÈëÑ§ÉúÑ§ºÅ£º\n");
+		System.out.print("è¯·è¾“å…¥å­¦ç”Ÿå­¦å·ï¼š\n");
 		number = scan.nextInt();
-		System.out.print("Çë·Ö±ğÊäÈëÑ§ÉúÁùÃÅ¿Î³Ì·ÖÊı£¨ÒÔ»Ø³µ½áÊøÃ¿´ÎÊäÈë£©£º\n");
+		System.out.print("è¯·åˆ†åˆ«è¾“å…¥å­¦ç”Ÿå…­é—¨è¯¾ç¨‹åˆ†æ•°ï¼ˆä»¥å›è½¦ç»“æŸæ¯æ¬¡è¾“å…¥ï¼‰ï¼š\n");
 		for(int i = 0; i < 6;i ++) {
 			subject.score[i] = scan.nextInt();
 		}
 		sumSco = subject.sum();
-		System.out.print("¸ÃÍ¬Ñ§µÄ¸÷ÃÅ·ÖÊıÍ³¼ÆÍê³É\n");
+		System.out.print("è¯¥åŒå­¦çš„å„é—¨åˆ†æ•°ç»Ÿè®¡å®Œæˆ\n");
 	}
 	void getArr(Students[] arr){
 		subject.enArrC(arr);//get arr of student
@@ -61,14 +61,15 @@ public class MainJava {
 			st.getInformation();
 		}
 		stu[0].getArr(stu);
-		System.out.println("Ñ§ÉúµÄÅÅÃû ĞÕÃû Ñ§ºÅ ×Ü·ÖÊı\n");
+		System.out.println("å­¦ç”Ÿçš„æ’å å§“å å­¦å· æ€»åˆ†æ•°\n");
 		for(Students st : stu) {
 			System.out.print((++arrNum) + " "+ st.name + " " + st.number  + " " + st.sumSco + "\n");
 		}
 	}
 	
 	public static void main(String arg[]) {
+		fun();//å¯åŠ¨ç¬¬ä¸€é¡¹ä½œä¸š
 		CalculateToatalArea cTA = new CalculateToatalArea();
-		cTA.calculateBarrells(6);
+		cTA.calculateBarrells(6);//å¯åŠ¨ç¬¬äºŒé¡¹ä½œä¸š
 	}	
 }
