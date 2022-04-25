@@ -1,5 +1,6 @@
 package homework2pac;
 
+import java.nio.channels.NonWritableChannelException;
 import java.util.Scanner;
 
 class Subject{
@@ -32,26 +33,26 @@ class Students{
 	long number;
 	int sumSco;
 	Scanner scan = new Scanner(System.in);
-	Subject subject = new Subject();
+	static Subject subject = new Subject();
 	void getInformation() {
-		System.out.print("è¯·è¾“å…¥å­¦ç”Ÿå§“åï¼š\n");
+		System.out.print("ÇëÊäÈëÑ§ÉúĞÕÃû£º\n");
 		name = scan.nextLine();
-		System.out.print("è¯·è¾“å…¥å­¦ç”Ÿå­¦å·ï¼š\n");
+		System.out.print("ÇëÊäÈëÑ§ÉúÑ§ºÅ£º\n");
 		number = scan.nextInt();
-		System.out.print("è¯·åˆ†åˆ«è¾“å…¥å­¦ç”Ÿå…­é—¨è¯¾ç¨‹åˆ†æ•°ï¼ˆä»¥å›è½¦ç»“æŸæ¯æ¬¡è¾“å…¥ï¼‰ï¼š\n");
+		System.out.print("Çë·Ö±ğÊäÈëÑ§ÉúÁùÃÅ¿Î³Ì·ÖÊı£¨ÒÔ»Ø³µ½áÊøÃ¿´ÎÊäÈë£©£º\n");
 		for(int i = 0; i < 6;i ++) {
 			subject.score[i] = scan.nextInt();
 		}
 		sumSco = subject.sum();
-		System.out.print("è¯¥åŒå­¦çš„å„é—¨åˆ†æ•°ç»Ÿè®¡å®Œæˆ\n");
+		System.out.print("¸ÃÍ¬Ñ§µÄ¸÷ÃÅ·ÖÊıÍ³¼ÆÍê³É\n");
 	}
-	void getArr(Students[] arr){
+	static void getArr(Students[] arr){
 		subject.enArrC(arr);//get arr of student
 	}
 }
 public class MainJava {
 	public static final int PEOPLE = 10;
-	void fun() {
+	static void fun() {
 		Students stu[] = new Students[PEOPLE];
 		for(int i = 0; i < PEOPLE; i ++) {
 			stu[i] = new Students();
@@ -60,16 +61,22 @@ public class MainJava {
 		for(Students st : stu) {
 			st.getInformation();
 		}
-		stu[0].getArr(stu);
-		System.out.println("å­¦ç”Ÿçš„æ’å å§“å å­¦å· æ€»åˆ†æ•°\n");
+		Students.getArr(stu);
+		System.out.println("Ñ§ÉúµÄÅÅÃû ĞÕÃû Ñ§ºÅ ×Ü·ÖÊı\n");
 		for(Students st : stu) {
 			System.out.print((++arrNum) + " "+ st.name + " " + st.number  + " " + st.sumSco + "\n");
 		}
 	}
 	
 	public static void main(String arg[]) {
-		fun();//å¯åŠ¨ç¬¬ä¸€é¡¹ä½œä¸š
+		//fun();
+		Error error = new Error();
+		//Error.errorWarn();
+		test tes = new test();
+		//tes.dogTestDrive();
+		//tes.fuction();
 		CalculateToatalArea cTA = new CalculateToatalArea();
-		cTA.calculateBarrells(6);//å¯åŠ¨ç¬¬äºŒé¡¹ä½œä¸š
+		
+		cTA.calculateBarrells(6);
 	}	
 }
