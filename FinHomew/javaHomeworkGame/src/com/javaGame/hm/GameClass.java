@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.PixelGrabber;
 import java.util.Random;
 
 public class GameClass extends JPanel implements KeyListener, ActionListener {
@@ -19,7 +20,7 @@ public class GameClass extends JPanel implements KeyListener, ActionListener {
     int p1Y;
     int p2X;
     int p2Y;
-
+    public static int pixel = 30;
     boolean isStart = false;    //游戏是否开始
     boolean p1isFail = false;     //游戏是否失败
     boolean p2isFail = false;
@@ -81,9 +82,9 @@ public class GameClass extends JPanel implements KeyListener, ActionListener {
         AppleX = 25*random.nextInt(28);
         AppleY = 100 + 25*random.nextInt(18);
 
-        add(kaishi);
-        add(chongkai);
-        guize.addActionListener(new ActionListener() {
+        add(startGame);
+        add(restart);
+        showRule.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new TestGameRule();
@@ -93,9 +94,9 @@ public class GameClass extends JPanel implements KeyListener, ActionListener {
 
 
     //游戏功能按钮
-    JButton kaishi = new JButton("开始");
-    JButton chongkai = new JButton("重新开始");
-    JButton guize = new JButton("游戏规则");
+    JButton startGame = new JButton("开始");
+    JButton restart = new JButton("重新开始");
+    JButton showRule = new JButton("游戏规则");
 
     //画板
     @Override
@@ -201,13 +202,13 @@ public class GameClass extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        kaishi.addActionListener(new ActionListener() {
+        startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 isStart = true;
             }
         });
-        chongkai.addActionListener(new ActionListener() {
+        restart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(p1isFail) { p1isFail = !p1isFail; init(); }
@@ -215,9 +216,9 @@ public class GameClass extends JPanel implements KeyListener, ActionListener {
             }
         });
 
-        add(kaishi);
-        add(chongkai);
-        add(guize);
+        add(startGame);
+        add(restart);
+        add(showRule);
 
         if(isStart == true && (p1isFail == false && p2isFail == false)) {
 
@@ -363,68 +364,68 @@ public class GameClass extends JPanel implements KeyListener, ActionListener {
 
             //如果有玩家碰到怪物，判定死亡，游戏结束           后续有修改，暂用
             //怪物1死亡
-            if(p1X >= monster1X -25 && p1X <= monster1X +25) {
+            if(p1X >= monster1X -pixel && p1X <= monster1X +pixel) {
                 if(p1Y == monster1Y) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p1Y >= monster1Y -25 && p1Y <= monster1Y +25) {
+            if(p1Y >= monster1Y -pixel && p1Y <= monster1Y +pixel) {
                 if(p1X == monster1X) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p2X >= monster1X -25 && p2X <= monster1X +25) {
+            if(p2X >= monster1X -pixel && p2X <= monster1X +pixel) {
                 if(p2Y == monster1Y) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
-            if(p2Y >= monster1Y -25 && p2Y <= monster1Y +25) {
+            if(p2Y >= monster1Y -pixel && p2Y <= monster1Y +pixel) {
                 if(p2X == monster1X) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
             //怪物2死亡
-            if(p1X >= monster2X -25 && p1X <= monster2X +25) {
+            if(p1X >= monster2X -pixel && p1X <= monster2X +pixel) {
                 if(p1Y == monster2Y) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p1Y >= monster2Y -25 && p1Y <= monster2Y +25) {
+            if(p1Y >= monster2Y -pixel && p1Y <= monster2Y +pixel) {
                 if(p1X == monster2X) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p2X >= monster2X -25 && p2X <= monster2X +25) {
+            if(p2X >= monster2X -pixel && p2X <= monster2X +pixel) {
                 if(p2Y == monster2Y) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
-            if(p2Y >= monster2Y -25 && p2Y <= monster2Y +25) {
+            if(p2Y >= monster2Y -pixel && p2Y <= monster2Y +pixel) {
                 if(p2X == monster2X) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
             //怪物3死亡
-            if(p1X >= monster3X -25 && p1X <= monster3X +25) {
+            if(p1X >= monster3X -pixel && p1X <= monster3X +pixel) {
                 if(p1Y == monster3Y) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p1Y >= monster3Y -25 && p1Y <= monster3Y +25) {
+            if(p1Y >= monster3Y -pixel && p1Y <= monster3Y +pixel) {
                 if(p1X == monster3X) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p2X >= monster3X -25 && p2X <= monster3X +25) {
+            if(p2X >= monster3X -pixel && p2X <= monster3X +pixel) {
                 if(p2Y == monster3Y) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
-            if(p2Y >= monster3Y -25 && p2Y <= monster3Y +25) {
+            if(p2Y >= monster3Y -pixel && p2Y <= monster3Y +pixel) {
                 if(p2X == monster3X) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
             //怪物4死亡
-            if(p1X >= monster4X -25 && p1X <= monster4X +25) {
+            if(p1X >= monster4X -pixel && p1X <= monster4X +pixel) {
                 if(p1Y == monster4Y) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p1Y >= monster4Y -25 && p1Y <= monster4Y +25) {
+            if(p1Y >= monster4Y -pixel && p1Y <= monster4Y +pixel) {
                 if(p1X == monster1X) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p2X >= monster4X -25 && p2X <= monster4X +25) {
+            if(p2X >= monster4X -pixel && p2X <= monster4X +pixel) {
                 if(p2Y == monster4Y) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
-            if(p2Y >= monster4Y -25 && p2Y <= monster4Y +25) {
+            if(p2Y >= monster4Y -pixel && p2Y <= monster4Y +pixel) {
                 if(p2X == monster4X) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
             //怪物5死亡
-            if(p1X >= monster5X -25 && p1X <= monster5X +25) {
+            if(p1X >= monster5X -pixel && p1X <= monster5X +pixel) {
                 if(p1Y == monster5Y) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p1Y >= monster5Y -25 && p1Y <= monster5Y +25) {
+            if(p1Y >= monster5Y -pixel && p1Y <= monster5Y +pixel) {
                 if(p1X == monster5X) { p1isFail = !p1isFail; p1score = p2score = 0;}
             }
-            if(p2X >= monster5X -25 && p2X <= monster5X +25) {
+            if(p2X >= monster5X -pixel && p2X <= monster5X +pixel) {
                 if(p2Y == monster5Y) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
-            if(p2Y >= monster5Y -25 && p2Y <= monster5Y+25) {
+            if(p2Y >= monster5Y -pixel && p2Y <= monster5Y+pixel) {
                 if(p2X == monster5X) { p2isFail = !p2isFail; p1score = p2score = 0;}
             }
             //如果有玩家达到指定积分，判定获胜，游戏结束
